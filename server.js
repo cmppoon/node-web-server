@@ -20,9 +20,10 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use((req, res, next) => {
-    res.render('maintenance.hbs');
-});
+// app.use((req, res, next) => {
+//     res.render('maintenance.hbs');
+//     next();
+// });
 
 app.use(express.static(__dirname + '/public'));
 
@@ -45,13 +46,19 @@ app.get('/about', (req,res) => {
     res.render('about.hbs', {
         pageTitle: 'About page'
     });
-})
+});
 
 app.get('/bad', (req, res) => {
     res.send({
         errorMessage: 'Unable to handle request'
     });
-})
+});
+
+app.get('/project', (req, res)=>{
+    res.render('project.hbs', {
+        pageTitle: 'Project page'
+    });
+});
 
 app.listen(port, () => {
     console.log(`Server started on port ${port}`);
